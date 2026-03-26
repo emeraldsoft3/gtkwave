@@ -1794,17 +1794,9 @@ void make_sigarea_gcs(GtkWidget *signalarea)
 {
 (void) signalarea;
 
-if(!GLOBALS->made_sgc_contexts_wavewindow_c_1)
+	if(!GLOBALS->made_sgc_contexts_wavewindow_c_1)
 	{
-	gboolean dark = GLOBALS->use_dark;
-
-#if GTK_CHECK_VERSION(3,0,0)
-	if(!dark)
-		{
-		g_object_get(gtk_settings_get_default(), "gtk-application-prefer-dark-theme", &dark, NULL);
-		GLOBALS->use_dark = dark;
-		}
-#endif
+		gboolean dark = TRUE;
 
 	GLOBALS->rgb_gc_white = dark ? XXX_alloc_color(GLOBALS->color_black) : XXX_alloc_color(GLOBALS->color_white);
 	GLOBALS->rgb_gc_black = dark ? XXX_alloc_color(GLOBALS->color_white) : XXX_alloc_color(GLOBALS->color_black);

@@ -956,6 +956,19 @@ g_log_set_writer_func (gtkwave_glib_log_handler, NULL, NULL);
 #ifdef WAVE_CRASH_ON_GTK_WARNING
 	g_log_set_always_fatal(G_LOG_LEVEL_CRITICAL|G_LOG_LEVEL_WARNING);
 #endif
+
+	{
+	const char *dark_css = 
+	    "treeview { background-color: #000000; color: #ffffff; }\n"
+	    "treeview:selected { background-color: #333333; color: #ffffff; }\n"
+	    "entry { background-color: #000000; color: #ffffff; border: 1px solid #444444; }\n";
+
+	GtkCssProvider *dark_provider = gtk_css_provider_new();
+	gtk_css_provider_load_from_data(dark_provider, dark_css, -1, NULL);
+	gtk_style_context_add_provider_for_screen(gdk_screen_get_default(),
+	                                          GTK_STYLE_PROVIDER(dark_provider),
+	                                          GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
+	}
 	}
 
 #if defined(__APPLE__)
